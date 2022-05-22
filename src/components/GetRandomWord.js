@@ -14,7 +14,7 @@ const CATEGORIES = new Map([
     ["foreign", "Foreign words used in English"],
     ["names", "Gender neutral first names"],
     ["choc", "Things that go well with chocolate"],
-    ["crush", "Things people to impress their crush"]
+    ["crush", "Things people do to impress their crush"]
 ]);
 
 /**
