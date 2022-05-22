@@ -4,6 +4,10 @@ import React, { useState } from 'react';
  * React does not know that it needs to re-render the answer component
  * unless I use the react state. So the displayed answer will only change when 
  * React watches for the state of the answer variable to change.
+ * 
+ * future plans for this function: export the get category function and the get rand word function,
+ * create a new set category function and their enum-ed functions to call from other scripts.
+ * stop returning JSX. this doesnt need to be html anymore.
  */
 
 
