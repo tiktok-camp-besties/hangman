@@ -1,5 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react';
 
+/**
+ * React does not know that it needs to re-render the answer component
+ * unless I use the react state. So the displayed answer will only change when 
+ * React watches for the state of the answer variable to change.
+ */
+
+
+/**
+ * Used to get the correct words from the category in the bank.
+ */
 const CATEGORIES = new Map([
     ["foreign", "Foreign words used in English"],
     ["names", "Gender neutral first names"],
@@ -7,8 +17,19 @@ const CATEGORIES = new Map([
     ["crush", "Things people to impress their crush"]
 ]);
 
+/**
+ * Contains all the functionality to randomly generate a word from the given category.
+ * 
+ * @param {prop[]} props - variables being passed into this component
+ * @returns HTML to control the random generation of words. Also displays the word.
+ */
 export default function GetRandomWord({ wordBank }) {
-    // functions
+    // ----- declarations ----- 
+
+    // tell React to update components when answer is changed.
+    const [answer, changeAnswer] = useState('');
+
+    // ----- functions ----- 
 
     /**
      * Returns a random element from an array.
@@ -24,22 +45,30 @@ export default function GetRandomWord({ wordBank }) {
     }
 
     /**
-     * Chooses a random word from the given category 
+     * Sets the answer word to be a random word from the given category 
      * 
-     * @param {string} key the category of the word, 
+     * @param {string} category the category of the word, 
      * which will be either "crush", "choc", "names", or "foreign"
-     * @returns a random word from the category
      */
-    function getRandomWord(key) {
-        return getRandomElem(wordBank[CATEGORIES.get(key)]);
+    function getRandomWord(category) {
+        let newAnswer = getRandomElem(wordBank[CATEGORIES.get(category)]);
+
+        changeAnswer(prevAnswer => {
+            return newAnswer;
+        });
     }
 
     // ----- html of component -----
     const currKey = "choc"; // let user choose in next iteration
     return (
         <>
+            <h2>Get Random Word Component</h2>
             <div>Category: {CATEGORIES.get(currKey)}</div>
-            <div>{getRandomWord(currKey)}</div>
+            <br />
+            <button onClick={() => getRandomWord(currKey)}>Generate next word</button>
+            <br />
+            <br />
+            <div>The answer is: {answer}</div>
         </>
     );
 }
