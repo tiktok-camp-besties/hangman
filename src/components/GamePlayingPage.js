@@ -17,7 +17,7 @@ export default function GamePlayingPage({ changePageFn, allWords }) {
             <br />
             <GetRandomWord wordBank={allWords} />
             <br />
-            <button onClick={() => changePageFn('end')}>Finish Game</button>
+            <button onClick={() => changePageFn('ended')}>Finish Game</button>
         </>
     );
 }

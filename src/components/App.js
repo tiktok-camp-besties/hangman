@@ -73,7 +73,7 @@ function App() {
           allWords={wordBank}
         />
       );
-    case 'end':
+    case 'ended':
       return (
         <GameEndedPage changePageFn={changePage} />
       );
