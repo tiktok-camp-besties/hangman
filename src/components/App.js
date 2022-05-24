@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import GameStartPage from "./GameStartPage";
 import GamePlayingPage from "./GamePlayingPage";
 import GameEndedPage from "./GameEndedPage";
 import '../assets/App.css';
+import {saveGameState, loadSavedStates} from "./LoadSaveGame";
 
 // for implementing loading and saving this week
 // const LOCAL_PAGE_STORAGE_KEY = 'hangman.pageState';
@@ -14,38 +15,15 @@ import '../assets/App.css';
  * @returns The generated html css of all the components combined
  */
 function App() {
-
+  
   // ----- declarations ----- 
 
   // the pageState on launch will be set to 'start'
-  const [pageState, setPageState] = useState("start");
+  var [pageState, setPageState] = useState("start");
 
   // An object containing all the words to choose from
   const wordBank = require('./wordbank.json');
-
-  // ----- hooks ----- 
-
-  /**
-   * To be implemented.
-   * Set up the game when the page loads.
-   */
-  useEffect(() => {
-    // loadSavedStates();
-  }, []);
-
-  // to add: save game when the state changes
-
-  // ----- functions ----- 
-
-  /**
-   * To be implemented.
-   * Loads the page's and game's state from 
-   * the user's local storage when the page loads
-   */
-  function loadSavedStates() {
-
-  }
-
+ 
   /**
    * Changes the page to the specified one.
    * The setPageState function has been defined by the useState hook API
@@ -58,9 +36,18 @@ function App() {
     });
   }
 
+ // ----- hooks ----- 
+
+  /**
+   * Set up the game when the page loads.
+   */
+  var data = loadSavedStates();
+  pageState = data["page"];
+
   // ----- main html on page ----- 
 
   // Display either the start, playing or end page at any time.
+  console.log(pageState);
   switch (pageState) {
     case 'start':
       return (
