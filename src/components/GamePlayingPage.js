@@ -17,6 +17,7 @@ export default function GamePlayingPage({ changePageFn, allWords }) {
     const [category, changeCategory] = useState(''); // change this to the long-form category cuz the display will be of the long-form one
     // also, the display needs to convert it to all caps
     // qn: can a state change in a separate class update a component in this class? these 2 declarations really belong in getrandomword not here. The many functions should be moved over to that class
+    // it might be able. see this tutorial and codepen here: https://reactjs.org/docs/lifting-state-up.html
 
     setWordbank(allWords);
 
