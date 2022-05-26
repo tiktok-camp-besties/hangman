@@ -1,6 +1,7 @@
 import React from 'react'
 import '../assets/GameStartPage.css';
-import {saveGameState} from './LoadSaveGame';
+import logo from '../assets/HappyTreeFriends.png';
+import { saveGameState } from './LoadSaveGame';
 
 /**
  * Represents all the elements on the starting page.
@@ -11,13 +12,12 @@ import {saveGameState} from './LoadSaveGame';
 export default function GameStartPage({ changePageFn }) {
     return (
         <>
-            <h1>Game Start Page</h1>
-            <div>Hit the button to start playing hangman!</div>
+            <img src={logo} alt="Happy Tree Man Game Logo" />
             <br />
             <button onClick={() => {
-                    saveGameState('playing');
-                    changePageFn('playing');
-                }
+                saveGameState('category');
+                changePageFn('category');
+            }
             }>Start Playing</button>
         </>
     );

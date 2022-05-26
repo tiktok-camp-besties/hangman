@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import GameStartPage from "./GameStartPage";
 import GamePlayingPage from "./GamePlayingPage";
-import GameEndedPage from "./GameEndedPage";
+import WinPage from "./WinPage";
+import LosePage from "./LosePage";
 import '../assets/App.css';
-import {saveGameState, loadSavedStates} from "./LoadSaveGame";
+import { saveGameState, loadSavedStates } from "./LoadSaveGame";
+import ChooseCategoryPage from "./ChooseCategoryPage";
 
 // for implementing loading and saving this week
 // const LOCAL_PAGE_STORAGE_KEY = 'hangman.pageState';
@@ -15,7 +17,7 @@ import {saveGameState, loadSavedStates} from "./LoadSaveGame";
  * @returns The generated html css of all the components combined
  */
 function App() {
-  
+
   // ----- declarations ----- 
 
   // the pageState on launch will be set to 'start'
@@ -23,7 +25,7 @@ function App() {
 
   // An object containing all the words to choose from
   const wordBank = require('./wordbank.json');
- 
+
   /**
    * Changes the page to the specified one.
    * The setPageState function has been defined by the useState hook API
@@ -36,7 +38,7 @@ function App() {
     });
   }
 
- // ----- hooks ----- 
+  // ----- hooks ----- 
 
   /**
    * Set up the game when the page loads.
@@ -50,20 +52,19 @@ function App() {
   console.log(pageState);
   switch (pageState) {
     case 'start':
-      return (
-        <GameStartPage changePageFn={changePage} />
-      );
+      return <GameStartPage changePageFn={changePage} />;
+    case 'category':
+      return <ChooseCategoryPage changePageFn={changePage} />;
     case 'playing':
       return (
         <GamePlayingPage
           changePageFn={changePage}
-          allWords={wordBank}
-        />
+          allWords={wordBank} />
       );
-    case 'ended':
-      return (
-        <GameEndedPage changePageFn={changePage} />
-      );
+    case 'win':
+      return <WinPage changePageFn={changePage} />;
+    case 'lose':
+      return <LosePage changePageFn={changePage} />;
     default:
       console.error('Tried to load \'' + pageState + '\' which is an invalid page state.');
   }

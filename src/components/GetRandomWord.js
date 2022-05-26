@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {saveGameState} from './LoadSaveGame';
+import { saveGameState } from './LoadSaveGame';
 
 /**
  * React does not know that it needs to re-render the answer component
@@ -7,6 +7,13 @@ import {saveGameState} from './LoadSaveGame';
  * React watches for the state of the answer variable to change.
  */
 
+/**
+ * TODO: Revamp Required.
+ * need to be able to 
+ * - return the answer to multiple pages
+ * - list all categories from workbank
+ * - set categories
+ */
 
 /**
  * Used to get the correct words from the category in the bank.
@@ -53,7 +60,7 @@ export default function GetRandomWord({ wordBank }) {
      */
     function getRandomWord(category) {
         let newAnswer = getRandomElem(wordBank[CATEGORIES.get(category)]);
-        
+
         saveGameState("playing", category, newAnswer);
         changeAnswer(prevAnswer => {
             return newAnswer;

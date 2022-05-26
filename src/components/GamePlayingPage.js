@@ -2,7 +2,7 @@ import React from 'react'
 import '../assets/GamePlayingPage.css';
 import GetRandomWord from './GetRandomWord';
 import UseCurrentWord from './UseCurrentWord';
-import {loadSavedStates, saveGameState} from './LoadSaveGame';
+import { loadSavedStates, saveGameState } from './LoadSaveGame';
 
 
 /**
@@ -18,31 +18,33 @@ export default function GamePlayingPage({ changePageFn, allWords }) {
     if (word === "") {
         return (
             <>
-                <h1>Game Playing Page</h1>
-                <div>We are now playing hangman!</div>
-                <br />
+                <h1>Debug: Game Playing Page</h1>
+                <div>Replace this with the graphics</div>
                 <GetRandomWord wordBank={allWords} />;
-                <br />
+                <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
+                <div>Replace this with the Keyboard</div>
+                <div>Change whether will go to win or lose page depending on game's outcome</div>
                 <button onClick={() => {
-                        saveGameState('ended');
-                        changePageFn('ended');
-                    }
-                }>Finish Game</button>
+                    saveGameState('win');
+                    changePageFn('win');
+                }
+                }>Debug: Win Game</button>
             </>
         );
     } else {
-         return (
+        return (
             <>
-                <h1>Game Playing Page</h1>
-                <div>We are now playing hangman!</div>
-                <br />
+                <h1>Debug: Game Playing Page</h1>
+                <div>Replace this with the graphics</div>
                 <UseCurrentWord category={category} word={word} />;
-                <br />
+                <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
+                <div>Replace this with the Keyboard</div>
+                <div>Change whether will go to win or lose page depending on game's outcome</div>
                 <button onClick={() => {
-                        saveGameState('ended');
-                        changePageFn('ended');
-                    }
-                }>Finish Game</button>
+                    saveGameState('win');
+                    changePageFn('win');
+                }
+                }>Debug: Win Game</button>
             </>
         );
     }
