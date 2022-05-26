@@ -86,3 +86,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Known issues
+
+1. Upon pull, when `npm start` results in **'react-scripts' is not recognised as an internal or external command, operable program of batch file.**
+
+Fix: Attempt `npm install react-scripts --save`
