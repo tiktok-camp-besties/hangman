@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GameStartPage from "./GameStartPage";
 import GamePlayingPage from "./GamePlayingPage";
 import GameEndedPage from "./GameEndedPage";
 import '../assets/App.css';
 import {saveGameState, loadSavedStates} from "./LoadSaveGame";
+import Figure from "./Figure";
+import WrongLetters from "./WrongLetters";
+import Word from "./Word";
+
+import './App.css';
 
 // for implementing loading and saving this week
 // const LOCAL_PAGE_STORAGE_KEY = 'hangman.pageState';
@@ -15,6 +20,8 @@ import {saveGameState, loadSavedStates} from "./LoadSaveGame";
  * @returns The generated html css of all the components combined
  */
 function App() {
+
+
   
   // ----- declarations ----- 
 
