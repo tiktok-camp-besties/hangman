@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {saveGameState} from './LoadSaveGame';
 
 /**
  * React does not know that it needs to re-render the answer component
@@ -52,7 +53,8 @@ export default function GetRandomWord({ wordBank }) {
      */
     function getRandomWord(category) {
         let newAnswer = getRandomElem(wordBank[CATEGORIES.get(category)]);
-
+        
+        saveGameState("playing", category, newAnswer);
         changeAnswer(prevAnswer => {
             return newAnswer;
         });
@@ -60,6 +62,11 @@ export default function GetRandomWord({ wordBank }) {
 
     // ----- html of component -----
     const currKey = "choc"; // let user choose in next iteration
+    // generate a random word if there is no initial word -- on first load
+    if (answer === "") {
+        getRandomWord(currKey);
+    }
+
     return (
         <>
             <h2>Get Random Word Component</h2>

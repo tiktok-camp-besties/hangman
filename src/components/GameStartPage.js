@@ -1,5 +1,6 @@
 import React from 'react'
 import '../assets/GameStartPage.css';
+import {saveGameState} from './LoadSaveGame';
 
 /**
  * Represents all the elements on the starting page.
@@ -13,7 +14,11 @@ export default function GameStartPage({ changePageFn }) {
             <h1>Game Start Page</h1>
             <div>Hit the button to start playing hangman!</div>
             <br />
-            <button onClick={() => changePageFn('playing')}>Start Playing</button>
+            <button onClick={() => {
+                    saveGameState('playing');
+                    changePageFn('playing');
+                }
+            }>Start Playing</button>
         </>
     );
 }
