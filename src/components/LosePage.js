@@ -1,6 +1,5 @@
 import React from 'react'
 import '../assets/LosePage.css';
-import { saveGameState } from './LoadSaveGame';
 
 /**
  * Represents all the elements on the losing page.
@@ -15,7 +14,6 @@ export default function LosePage({ changePageFn, currAnswer }) {
       <div>The word was: {currAnswer}</div>
       <br />
       <button onClick={() => {
-        saveGameState('start');
         changePageFn('start');
       }
       }>Try Again</button>

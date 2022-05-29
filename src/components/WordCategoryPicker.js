@@ -83,7 +83,7 @@ export function toLong(shortName) {
  * @returns the short name of the category
  */
 export function toShort(longName) {
-  return [...CATEGORIES].find(([key, val]) => val == longName)[0];
+  return [...CATEGORIES].find(([key, val]) => val === longName)[0];
 }
 
 /**

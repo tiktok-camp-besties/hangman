@@ -1,6 +1,5 @@
 import React from 'react'
 import '../assets/WinPage.css';
-import { saveGameState } from './LoadSaveGame';
 
 /**
  * Represents all the elements on the winning page.
@@ -15,7 +14,6 @@ export default function WinPage({ changePageFn, currAnswer }) {
       <br />
       <div>The word was: {currAnswer}</div>
       <button onClick={() => {
-        saveGameState('start');
         changePageFn('start');
       }
       }>Next Word</button>

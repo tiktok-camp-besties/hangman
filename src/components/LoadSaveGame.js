@@ -1,10 +1,3 @@
-import React from "react";
-import GameStartPage from "./GameStartPage";
-import GamePlayingPage from "./GamePlayingPage";
-import GameEndedPage from "./WinPage";
-
-// to add: save game when the state changes
-
 // ----- functions ----- 
 
 /**
@@ -25,7 +18,7 @@ export function saveGameState(page = "start", category = "", word = "", lives = 
  */
 export function loadSavedStates() {
   const temp = document.cookie.split(";").map(x => x.trim().split("="));
-  var dict = {};
+  let dict = {};
   temp.forEach(function (item, index) {
     dict[item[0]] = item[1];
   });

@@ -19,9 +19,11 @@ function App() {
 
   // React-tracked variables
   // the pageState on launch will be set to 'start'
-  const [pageState, setPageState] = useState("start");
+  const [pageState, setPageState] = useState('start');
   const [category, setCategory] = useState('names'); // shortNames of the category
-  const [answer, setAnswer] = useState('names'); // why does it only work when i start with a valid default value?
+  const [answer, setAnswer] = useState('names');
+  const [lives, setLives] = useState(7);
+  const [usedLetters, setUsedLetters] = useState('');
 
   // An object containing all the words to choose from
   const wordBank = require('./wordbank.json');
@@ -35,9 +37,21 @@ function App() {
   useEffect(() => {
     let data = loadSavedStates();
     setPageState(data["page"]);
+    setCategory(data["category"]);
+    setAnswer(data["word"]);
+    setLives(data["lives"]);
+    setUsedLetters(data["usedletters"]);
   }, []);
 
   // ----- functions -----
+
+  /**
+   * To be called when player makes a guess.
+   * Saves the page's state to cookies so that player does not lose progress when they reload.
+   */
+  function saveOnGuess() {
+    saveGameState(pageState, category, answer, lives, usedLetters);
+  }
 
   /**
    * Changes the page to the specified one.
@@ -46,14 +60,15 @@ function App() {
    * @param {string} nextPage - The next page to load
    */
   function handlePageChange(nextPage) {
+    saveGameState(nextPage, category, answer, lives, usedLetters);
     setPageState(prevPage => {
       return nextPage;
     });
-    // saveGameState("playing", category, newAnswer); what should i put in here? likewise for btm 2
   }
 
   /**
    * Changes the category to the specified one, in shortName format.
+   * Note: relies on handleAnswerChange to save state
    * 
    * @param {string} newCategory the short name of the new category
    */
@@ -62,11 +77,11 @@ function App() {
       return newCategory;
     });
     handleAnswerChange(newCategory);
-    // saveGameState("playing", category, newAnswer);
   }
 
   /**
    * Changes the category to a random new category, saved as its shortName.
+   * Note: relies on handleAnswerChange to save state
    */
   function handleRandomCategoryChange() {
     let randCat = getRandomCategory();
@@ -74,7 +89,6 @@ function App() {
       return randCat;
     });
     handleAnswerChange(randCat);
-    // saveGameState("playing", category, newAnswer);
   }
 
   /**
@@ -86,10 +100,10 @@ function App() {
       if (prevAnswer === newWord) {
         handleAnswerChange(newCategory);
       } else {
+        saveGameState(pageState, newCategory, newWord, lives, usedLetters);
         return newWord;
       }
     });
-    // saveGameState("playing", category, newAnswer);
   }
 
   // ----- main html on page ----- 
@@ -112,6 +126,7 @@ function App() {
         currCategory={category}
         currAnswer={answer}
         toLong={toLong}
+        saveOnGuess={saveOnGuess}
         changeAnswer={handleAnswerChange}
       />;
     case 'win':

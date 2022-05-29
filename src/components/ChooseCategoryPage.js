@@ -1,6 +1,5 @@
 import React from 'react'
 import '../assets/ChooseCategoryPage.css';
-import { saveGameState } from './LoadSaveGame';
 
 /**
  * Represents all the elements on the category choosing page.
@@ -21,8 +20,7 @@ export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNe
         return (
           <>
             <button onClick={() => {
-              setNewCategory(toShort(category)); // only works on 2nd click, the update was queued with the dom update.
-              saveGameState('playing');
+              setNewCategory(toShort(category));
               changePageFn('playing');
             }
             }>{category}</button>
@@ -32,8 +30,7 @@ export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNe
       })}
       <div>Or</div>
       <button onClick={() => {
-        setNewRandCategory(); // only works on 2nd click
-        saveGameState('playing');
+        setNewRandCategory();
         changePageFn('playing');
       }
       }>Choose Random Category</button>
