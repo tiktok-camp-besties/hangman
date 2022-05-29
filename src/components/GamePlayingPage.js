@@ -6,6 +6,7 @@ import Word from './Word';
 import Figure from './Figure';
 import { showNotification as show, checkWin } from '../helpers/helpers';
 import Keyboard from './Keyboard'
+import WinPage from './WinPage';
 
 
 /**
@@ -144,6 +145,19 @@ export default function GamePlayingPage({ changePageFn, currCategory, currAnswer
 
   }
 
+  function changePageOnEnd (correctLetters, wrongLetters, selectedWord, setPlayable, playAgain){
+    let playable = true;
+    if( checkWin(correctLetters, wrongLetters, selectedWord) === 'win' ) {
+      playable = false;
+      changePageFn('win');
+      
+    } else if( checkWin(correctLetters, wrongLetters, selectedWord) === 'lose' ) {
+      playable = false;
+      changePageFn('lose');
+      
+    }
+  }
+
   return (
     <>
       <h1>Debug: Game Playing Page</h1>
@@ -151,12 +165,12 @@ export default function GamePlayingPage({ changePageFn, currCategory, currAnswer
       <WrongLetters wrongLetters={wrongLetters} />
       <Word selectedWord={selectedWord} correctLetters = {correctLetters} />
       <div>Replace this with the graphics</div>
-
+      
       <div>Category: {toLong(currCategory)}</div>
       <div>Debug - Answer: {currAnswer}</div>
       <button onClick={() => changeAnswer(currCategory)}>Debug - Generate new answer</button>
       <button onClick={() => saveOnGuess()}>Save Page State. Wire this up to the guessing function.</button>
-
+      {changePageOnEnd(correctLetters, wrongLetters, selectedWord)}
       <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
       <Keyboard />
       <div>Change whether will go to win or lose page depending on game's outcome</div>
