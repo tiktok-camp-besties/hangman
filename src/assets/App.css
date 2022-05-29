@@ -4,7 +4,7 @@
 
 body {
   background-color: #34495e;
-  color: #fff;
+  color: #000;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ h1 {
 
 .figure-container {
   fill: transparent;
-  stroke: #fff;
+  stroke: #000;
   stroke-width: 4px;
   stroke-linecap: round;
 }
@@ -96,7 +96,7 @@ h1 {
 
 .popup button {
   cursor: pointer;
-  background-color: #fff;
+  background-color: #000;
   color: #2980b9;
   border: 0;
   margin-top: 20px;

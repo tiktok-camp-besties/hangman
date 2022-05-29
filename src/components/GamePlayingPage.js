@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import '../assets/GamePlayingPage.css';
-import {loadSavedStates, saveGameState} from './LoadSaveGame';
+import { loadSavedStates, saveGameState } from './LoadSaveGame';
 import WrongLetters from './WrongLetters';
 import Word from './Word';
 import Figure from './Figure';
@@ -103,82 +103,71 @@ import WinPage from './WinPage';
     */
 
 //const words = ['application', 'programming', 'interface', 'wizard'];
- 
+
 
 export default function GamePlayingPage({ changePageFn, currCategory, currAnswer, toLong, saveOnGuess, changeAnswer }) {
   let selectedWord = currAnswer;
   const [playable, setPlayable] = useState(true);
-    const [correctLetters, setCorrectLetters] = useState([]);
-    const [wrongLetters, setWrongLetters] = useState([]);
-    const [showNotification, setShowNotification] = useState(false);
+  const [correctLetters, setCorrectLetters] = useState([]);
+  const [wrongLetters, setWrongLetters] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
 
-    useEffect(() => {
-      const handleKeydown = event => {
-        const { key, keyCode } = event;
-        if (playable && keyCode >= 65 && keyCode <= 90) {
-          const letter = key.toLowerCase();
-          if (selectedWord.includes(letter)) {
-            if (!correctLetters.includes(letter)) {
-              setCorrectLetters(currentLetters => [...currentLetters, letter]);
-            } else {
-              show(setShowNotification);
-            }
+  useEffect(() => {
+    const handleKeydown = event => {
+      const { key, keyCode } = event;
+      if (playable && keyCode >= 65 && keyCode <= 90) {
+        const letter = key.toLowerCase();
+        if (selectedWord.includes(letter)) {
+          if (!correctLetters.includes(letter)) {
+            setCorrectLetters(currentLetters => [...currentLetters, letter]);
           } else {
-            if (!wrongLetters.includes(letter)) {
-              setWrongLetters(currentLetters => [...currentLetters, letter]);
-            } else {
-              show(setShowNotification);
-            }
+            show(setShowNotification);
+          }
+        } else {
+          if (!wrongLetters.includes(letter)) {
+            setWrongLetters(currentLetters => [...currentLetters, letter]);
+          } else {
+            show(setShowNotification);
           }
         }
       }
-      window.addEventListener('keydown', handleKeydown);
-  
-      return () => window.removeEventListener('keydown', handleKeydown);
-    }, [correctLetters, wrongLetters, playable]);
+    }
+    window.addEventListener('keydown', handleKeydown);
 
-    function playAgain() {
-      setPlayable(true);
+    return () => window.removeEventListener('keydown', handleKeydown);
+  }, [correctLetters, wrongLetters, playable]);
 
-      setCorrectLetters([]);
-      setWrongLetters([]);
+  function playAgain() {
+    setPlayable(true);
+
+    setCorrectLetters([]);
+    setWrongLetters([]);
 
   }
 
-  function changePageOnEnd (correctLetters, wrongLetters, selectedWord, setPlayable, playAgain){
+  function changePageOnEnd(correctLetters, wrongLetters, selectedWord, setPlayable, playAgain) {
     let playable = true;
-    if( checkWin(correctLetters, wrongLetters, selectedWord) === 'win' ) {
+    if (checkWin(correctLetters, wrongLetters, selectedWord) === 'win') {
       playable = false;
       changePageFn('win');
-      
-    } else if( checkWin(correctLetters, wrongLetters, selectedWord) === 'lose' ) {
+
+    } else if (checkWin(correctLetters, wrongLetters, selectedWord) === 'lose') {
       playable = false;
       changePageFn('lose');
-      
+
     }
   }
 
   return (
     <>
-      <h1>Debug: Game Playing Page</h1>
-      <Figure wrongLetters= {wrongLetters} />
+      <Figure wrongLetters={wrongLetters} />
       <WrongLetters wrongLetters={wrongLetters} />
-      <Word selectedWord={selectedWord} correctLetters = {correctLetters} />
-      <div>Replace this with the graphics</div>
-      
+      <Word selectedWord={selectedWord} correctLetters={correctLetters} />
+
+      <div>note: Type to input</div>
       <div>Category: {toLong(currCategory)}</div>
-      <div>Debug - Answer: {currAnswer}</div>
-      <button onClick={() => changeAnswer(currCategory)}>Debug - Generate new answer</button>
-      <button onClick={() => saveOnGuess()}>Save Page State. Wire this up to the guessing function.</button>
       {changePageOnEnd(correctLetters, wrongLetters, selectedWord)}
-      <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
       <Keyboard />
-      <div>Change whether will go to win or lose page depending on game's outcome</div>
-      <button onClick={() => {
-        changePageFn('win');
-      }
-      }>Debug: Win Game</button>
     </>
   );
-
 }

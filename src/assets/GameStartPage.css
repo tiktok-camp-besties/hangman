@@ -2,3 +2,25 @@
     /* just a sample */
     --text-color: #000000;
 }
+
+body {
+  background-image: url("bg.png");
+}
+
+.logo{
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.nextPageButton{
+    margin: 0;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
