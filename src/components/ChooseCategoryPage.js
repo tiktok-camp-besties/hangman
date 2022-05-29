@@ -10,9 +10,6 @@ import '../assets/ChooseCategoryPage.css';
 export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNewRandCategory, categoryList, toShort }) {
   return (
     <>
-      <h1>Debug: Choose Category Page</h1>
-
-      <br />
       <div className='pageTitle' >Select a Category</div>
 
       {/* List of buttons for player to choose their category */}
