@@ -1,20 +1,4 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import GameStartPage from "./GameStartPage";
-import GamePlayingPage from "./GamePlayingPage";
-import GameEndedPage from "./GameEndedPage";
-import '../assets/App.css';
-import {saveGameState, loadSavedStates} from "./LoadSaveGame";
-import Figure from "./Figure";
-import WrongLetters from "./WrongLetters";
-import Word from "./Word";
-
-import './App.css';
-
-// for implementing loading and saving this week
-// const LOCAL_PAGE_STORAGE_KEY = 'hangman.pageState';
-// const LOCAL_GAME_STORAGE_KEY = 'hangman.gameState'
-=======
 import '../assets/App.css';
 import GameStartPage from "./GameStartPage";
 import GamePlayingPage from "./GamePlayingPage";
@@ -23,7 +7,9 @@ import LosePage from "./LosePage";
 import ChooseCategoryPage from "./ChooseCategoryPage";
 import { saveGameState, loadSavedStates } from "./LoadSaveGame";
 import { getRandomWord, getRandomCategory, getAllCategories, toShort, toLong } from "./WordCategoryPicker";
->>>>>>> main
+import Figure from "./Figure";
+import WrongLetters from "./WrongLetters";
+import Word from "./Word";
 
 /**
  * Creates everything that you see on the webpage.
@@ -32,11 +18,6 @@ import { getRandomWord, getRandomCategory, getAllCategories, toShort, toLong } f
  */
 function App() {
 
-<<<<<<< HEAD
-
-  
-=======
->>>>>>> main
   // ----- declarations ----- 
 
   // React-tracked variables

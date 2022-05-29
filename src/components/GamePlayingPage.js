@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import '../assets/GamePlayingPage.css';
-import GetRandomWord from './GetRandomWord';
-import UseCurrentWord from './UseCurrentWord';
 import {loadSavedStates, saveGameState} from './LoadSaveGame';
 import WrongLetters from './WrongLetters';
 import Word from './Word';
@@ -103,10 +101,11 @@ import Keyboard from './Keyboard'
     }
     */
 
-const words = ['application', 'programming', 'interface', 'wizard'];
- let selectedWord = words[Math.floor(Math.random() * words.length)];
+//const words = ['application', 'programming', 'interface', 'wizard'];
+ 
 
 export default function GamePlayingPage({ changePageFn, currCategory, currAnswer, toLong, saveOnGuess, changeAnswer }) {
+  let selectedWord = currAnswer;
   const [playable, setPlayable] = useState(true);
     const [correctLetters, setCorrectLetters] = useState([]);
     const [wrongLetters, setWrongLetters] = useState([]);
@@ -143,8 +142,6 @@ export default function GamePlayingPage({ changePageFn, currCategory, currAnswer
       setCorrectLetters([]);
       setWrongLetters([]);
 
-      const random = Math.floor(Math.random() * words.length);
-      selectedWord = words[random];
   }
 
   return (
