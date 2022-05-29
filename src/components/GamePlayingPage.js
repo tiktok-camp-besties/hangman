@@ -11,8 +11,8 @@ import { loadSavedStates, saveGameState } from './LoadSaveGame';
  */
 export default function GamePlayingPage({ changePageFn, currCategory, currAnswer, toLong, changeAnswer }) {
   const data = loadSavedStates();
-  var category = data["category"];
-  var word = data["word"];
+  let category = data["category"];
+  let word = data["word"];
   return (
     <>
       <h1>Debug: Game Playing Page</h1>
@@ -20,7 +20,7 @@ export default function GamePlayingPage({ changePageFn, currCategory, currAnswer
 
       <div>Category: {toLong(currCategory)}</div>
       <div>Debug - Answer: {currAnswer}</div>
-      <button onClick={() => changeAnswer()}>Debug - Generate new answer</button>
+      <button onClick={() => changeAnswer(currCategory)}>Debug - Generate new answer</button>
 
       <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
       <div>Replace this with the Keyboard</div>

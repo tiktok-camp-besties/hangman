@@ -9,7 +9,6 @@ import { saveGameState } from './LoadSaveGame';
  * @returns HTML of the start page.
  */
 export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNewRandCategory, categoryList, toShort }) {
-  let count = 0;
   return (
     <>
       <h1>Debug: Choose Category Page</h1>
@@ -22,7 +21,7 @@ export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNe
         return (
           <>
             <button onClick={() => {
-              setNewCategory(toShort(category)) // did not work??
+              setNewCategory(toShort(category)); // only works on 2nd click, the update was queued with the dom update.
               saveGameState('playing');
               changePageFn('playing');
             }
@@ -33,7 +32,7 @@ export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNe
       })}
       <div>Or</div>
       <button onClick={() => {
-        setNewRandCategory(); // did not work??
+        setNewRandCategory(); // only works on 2nd click
         saveGameState('playing');
         changePageFn('playing');
       }

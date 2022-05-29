@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../assets/App.css';
 import GameStartPage from "./GameStartPage";
 import GamePlayingPage from "./GamePlayingPage";
@@ -20,8 +20,8 @@ function App() {
   // React-tracked variables
   // the pageState on launch will be set to 'start'
   const [pageState, setPageState] = useState("start");
-  const [category, setCategory] = useState('choc'); // shortNames of the category
-  const [answer, setAnswer] = useState('choc');
+  const [category, setCategory] = useState('names'); // shortNames of the category
+  const [answer, setAnswer] = useState('names'); // why does it only work when i start with a valid default value?
 
   // An object containing all the words to choose from
   const wordBank = require('./wordbank.json');
@@ -32,8 +32,10 @@ function App() {
   /**
    * Set up the game when the page loads.
    */
-  // var data = loadSavedStates();
-  // pageState = data["page"]; throws error: tried to assign to readonly property
+  useEffect(() => {
+    let data = loadSavedStates();
+    setPageState(data["page"]);
+  }, []);
 
   // ----- functions -----
 
@@ -44,7 +46,9 @@ function App() {
    * @param {string} nextPage - The next page to load
    */
   function handlePageChange(nextPage) {
-    setPageState(prevPage => nextPage);
+    setPageState(prevPage => {
+      return nextPage;
+    });
     // saveGameState("playing", category, newAnswer); what should i put in here? likewise for btm 2
   }
 
@@ -54,8 +58,10 @@ function App() {
    * @param {string} newCategory the short name of the new category
    */
   function handleCategoryChange(newCategory) {
-    setCategory(prevCategory => newCategory);
-    handleAnswerChange();
+    setCategory(prevCategory => { // apparently queues the update to happen when on the next DOM refresh.
+      return newCategory;
+    });
+    handleAnswerChange(newCategory);
     // saveGameState("playing", category, newAnswer);
   }
 
@@ -63,16 +69,26 @@ function App() {
    * Changes the category to a random new category, saved as its shortName.
    */
   function handleRandomCategoryChange() {
-    setCategory(prevCategory => getRandomCategory());
-    handleAnswerChange();
+    let randCat = getRandomCategory();
+    setCategory(prevCategory => {
+      return randCat;
+    });
+    handleAnswerChange(randCat);
     // saveGameState("playing", category, newAnswer);
   }
 
   /**
    * Sets the answer to a new answer from the current category.
    */
-  function handleAnswerChange() {
-    setAnswer(prevAnswer => getRandomWord(category, wordBank));
+  function handleAnswerChange(newCategory) {
+    let newWord = getRandomWord(newCategory, wordBank); // the category being used is the old one
+    setAnswer(prevAnswer => {
+      if (prevAnswer === newWord) {
+        handleAnswerChange(newCategory);
+      } else {
+        return newWord;
+      }
+    });
     // saveGameState("playing", category, newAnswer);
   }
 

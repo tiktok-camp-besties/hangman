@@ -9,18 +9,14 @@ import { saveGameState } from './LoadSaveGame';
  * @returns HTML of the ending page.
  */
 export default function LosePage({ changePageFn, currAnswer }) {
-  let answer = 'fix this';
   return (
     <>
       <div className='pageTitle' >You Lost.</div>
       <div>The word was: {currAnswer}</div>
       <br />
       <button onClick={() => {
-        saveGameState('category');
-        changePageFn('category');
-
-        // Unknown bug: does not move to start page after refreshing on ended page.
-        document.location = "/"; // Forced reload page
+        saveGameState('start');
+        changePageFn('start');
       }
       }>Try Again</button>
     </>

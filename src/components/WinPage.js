@@ -15,11 +15,8 @@ export default function WinPage({ changePageFn, currAnswer }) {
       <br />
       <div>The word was: {currAnswer}</div>
       <button onClick={() => {
-        saveGameState('category');
-        changePageFn('category');
-
-        // Unknown bug: does not move to start page after refreshing on ended page.
-        document.location = "/"; // Forced reload page
+        saveGameState('start');
+        changePageFn('start');
       }
       }>Next Word</button>
     </>
