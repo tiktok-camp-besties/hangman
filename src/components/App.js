@@ -6,7 +6,7 @@ import WinPage from "./WinPage";
 import LosePage from "./LosePage";
 import ChooseCategoryPage from "./ChooseCategoryPage";
 import { saveGameState, loadSavedStates } from "./LoadSaveGame";
-import { getRandomWord, getRandomCategory, getAllCategories } from "./WordCategoryPicker";
+import { getRandomWord, getRandomCategory, getAllCategories, toShort, toLong } from "./WordCategoryPicker";
 
 /**
  * Creates everything that you see on the webpage.
@@ -20,8 +20,8 @@ function App() {
   // React-tracked variables
   // the pageState on launch will be set to 'start'
   const [pageState, setPageState] = useState("start");
-  const [category, setCategory] = useState(''); // shortNames of the category
-  const [answer, setAnswer] = useState('');
+  const [category, setCategory] = useState('choc'); // shortNames of the category
+  const [answer, setAnswer] = useState('choc');
 
   // An object containing all the words to choose from
   const wordBank = require('./wordbank.json');
@@ -32,8 +32,8 @@ function App() {
   /**
    * Set up the game when the page loads.
    */
-  var data = loadSavedStates();
-  pageState = data["page"];
+  // var data = loadSavedStates();
+  // pageState = data["page"]; throws error: tried to assign to readonly property
 
   // ----- functions -----
 
@@ -55,6 +55,7 @@ function App() {
    */
   function handleCategoryChange(newCategory) {
     setCategory(prevCategory => newCategory);
+    handleAnswerChange();
     // saveGameState("playing", category, newAnswer);
   }
 
@@ -63,6 +64,7 @@ function App() {
    */
   function handleRandomCategoryChange() {
     setCategory(prevCategory => getRandomCategory());
+    handleAnswerChange();
     // saveGameState("playing", category, newAnswer);
   }
 
@@ -83,16 +85,18 @@ function App() {
     case 'category':
       return <ChooseCategoryPage
         changePageFn={handlePageChange}
-        currCategory={category}
         setNewCategory={handleCategoryChange}
         setNewRandCategory={handleRandomCategoryChange}
         categoryList={getAllCategories}
+        toShort={toShort}
       />;
     case 'playing':
       return <GamePlayingPage
         changePageFn={handlePageChange}
         currCategory={category}
         currAnswer={answer}
+        toLong={toLong}
+        changeAnswer={handleAnswerChange}
       />;
     case 'win':
       return <WinPage

@@ -1,6 +1,5 @@
 import React from 'react'
 import '../assets/GamePlayingPage.css';
-import UseCurrentWord from './UseCurrentWord';
 import { loadSavedStates, saveGameState } from './LoadSaveGame';
 
 
@@ -10,40 +9,27 @@ import { loadSavedStates, saveGameState } from './LoadSaveGame';
  * @param {prop[]} props - variables being passed into this component
  * @returns HTML of the playing page.
  */
-export default function GamePlayingPage({ changePageFn, allWords }) {
+export default function GamePlayingPage({ changePageFn, currCategory, currAnswer, toLong, changeAnswer }) {
   const data = loadSavedStates();
   var category = data["category"];
   var word = data["word"];
-  if (word === "") {
-    return (
-      <>
-        <h1>Debug: Game Playing Page</h1>
-        <div>Replace this with the graphics</div>
-        <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
-        <div>Replace this with the Keyboard</div>
-        <div>Change whether will go to win or lose page depending on game's outcome</div>
-        <button onClick={() => {
-          saveGameState('win');
-          changePageFn('win');
-        }
-        }>Debug: Win Game</button>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <h1>Debug: Game Playing Page</h1>
-        <div>Replace this with the graphics</div>
-        <UseCurrentWord category={category} word={word} />
-        <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
-        <div>Replace this with the Keyboard</div>
-        <div>Change whether will go to win or lose page depending on game's outcome</div>
-        <button onClick={() => {
-          saveGameState('win');
-          changePageFn('win');
-        }
-        }>Debug: Win Game</button>
-      </>
-    );
-  }
+  return (
+    <>
+      <h1>Debug: Game Playing Page</h1>
+      <div>Replace this with the graphics</div>
+
+      <div>Category: {toLong(currCategory)}</div>
+      <div>Debug - Answer: {currAnswer}</div>
+      <button onClick={() => changeAnswer()}>Debug - Generate new answer</button>
+
+      <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
+      <div>Replace this with the Keyboard</div>
+      <div>Change whether will go to win or lose page depending on game's outcome</div>
+      <button onClick={() => {
+        saveGameState('win');
+        changePageFn('win');
+      }
+      }>Debug: Win Game</button>
+    </>
+  );
 }

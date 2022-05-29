@@ -1,7 +1,6 @@
 import React from 'react'
 import '../assets/ChooseCategoryPage.css';
 import { saveGameState } from './LoadSaveGame';
-import { getAllCategories, setCategory } from './WordCategoryPicker';
 
 /**
  * Represents all the elements on the category choosing page.
@@ -9,18 +8,21 @@ import { getAllCategories, setCategory } from './WordCategoryPicker';
  * @param {prop[]} props - variables being passed into this component
  * @returns HTML of the start page.
  */
-export default function ChooseCategoryPage({ changePageFn }) {
+export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNewRandCategory, categoryList, toShort }) {
+  let count = 0;
   return (
     <>
       <h1>Debug: Choose Category Page</h1>
 
       <br />
       <div className='pageTitle' >Select a Category</div>
-      {/* drop down list component with programatically loaded sections from the text file */}
-      {getAllCategories().map(category => {
+
+      {/* List of buttons for player to choose their category */}
+      {categoryList(false).map(category => {
         return (
           <>
             <button onClick={() => {
+              setNewCategory(toShort(category)) // did not work??
               saveGameState('playing');
               changePageFn('playing');
             }
@@ -31,11 +33,11 @@ export default function ChooseCategoryPage({ changePageFn }) {
       })}
       <div>Or</div>
       <button onClick={() => {
-        // choose a random category
+        setNewRandCategory(); // did not work??
         saveGameState('playing');
         changePageFn('playing');
       }
-      }>Random Category</button>
+      }>Choose Random Category</button>
     </>
   );
 }
