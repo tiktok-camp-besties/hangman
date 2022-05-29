@@ -25,17 +25,21 @@ const CATEGORIES = new Map([
     ["crush", "Things people do to impress their crush"]
 ]);
 
+export function getAllCategories() {
+    const allCats = [];
+    for (let longName of CATEGORIES.values()) {
+        allCats.push(longName);
+    }
+    return allCats;
+}
+
 /**
  * Contains all the functionality to randomly generate a word from the given category.
  * 
  * @param {prop[]} props - variables being passed into this component
  * @returns HTML to control the random generation of words. Also displays the word.
  */
-export default function GetRandomWord({ wordBank }) {
-    // ----- declarations ----- 
-
-    // tell React to update components when answer is changed.
-    const [answer, changeAnswer] = useState('');
+default function GetRandomWord({ wordBank }) {
 
     // ----- functions ----- 
 
@@ -53,6 +57,7 @@ export default function GetRandomWord({ wordBank }) {
     }
 
     /**
+     * called by the displayer function
      * Sets the answer word to be a random word from the given category 
      * 
      * @param {string} category the category of the word, 
@@ -62,27 +67,8 @@ export default function GetRandomWord({ wordBank }) {
         let newAnswer = getRandomElem(wordBank[CATEGORIES.get(category)]);
 
         saveGameState("playing", category, newAnswer);
-        changeAnswer(prevAnswer => {
+        setAnswer(prevAnswer => {
             return newAnswer;
         });
     }
-
-    // ----- html of component -----
-    const currKey = "choc"; // let user choose in next iteration
-    // generate a random word if there is no initial word -- on first load
-    if (answer === "") {
-        getRandomWord(currKey);
-    }
-
-    return (
-        <>
-            <h2>Get Random Word Component</h2>
-            <div>Category: {CATEGORIES.get(currKey)}</div>
-            <br />
-            <button onClick={() => getRandomWord(currKey)}>Generate next word</button>
-            <br />
-            <br />
-            <div>The answer is: {answer}</div>
-        </>
-    );
 }

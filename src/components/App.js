@@ -7,10 +7,6 @@ import '../assets/App.css';
 import { saveGameState, loadSavedStates } from "./LoadSaveGame";
 import ChooseCategoryPage from "./ChooseCategoryPage";
 
-// for implementing loading and saving this week
-// const LOCAL_PAGE_STORAGE_KEY = 'hangman.pageState';
-// const LOCAL_GAME_STORAGE_KEY = 'hangman.gameState'
-
 /**
  * Creates everything that you see on the webpage.
  * 
@@ -21,7 +17,9 @@ function App() {
   // ----- declarations ----- 
 
   // the pageState on launch will be set to 'start'
-  var [pageState, setPageState] = useState("start");
+  const [pageState, setPageState] = useState("start");
+  const [answer, setAnswer] = useState('');
+  const [category, setCategory] = useState('');
 
   // An object containing all the words to choose from
   const wordBank = require('./wordbank.json');
@@ -49,7 +47,6 @@ function App() {
   // ----- main html on page ----- 
 
   // Display either the start, playing or end page at any time.
-  console.log(pageState);
   switch (pageState) {
     case 'start':
       return <GameStartPage changePageFn={changePage} />;

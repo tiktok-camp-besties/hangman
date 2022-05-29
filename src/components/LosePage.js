@@ -16,8 +16,8 @@ export default function LosePage({ changePageFn }) {
             <div>The word was: {answer}</div>
             <br />
             <button onClick={() => {
-                saveGameState('start');
-                changePageFn('start');
+                saveGameState('category');
+                changePageFn('category');
 
                 // Unknown bug: does not move to start page after refreshing on ended page.
                 document.location = "/"; // Forced reload page

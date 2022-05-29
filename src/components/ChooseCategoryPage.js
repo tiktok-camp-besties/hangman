@@ -1,6 +1,7 @@
 import React from 'react'
 import '../assets/ChooseCategoryPage.css';
 import { saveGameState } from './LoadSaveGame';
+import { getAllCategories, setCategory } from './GetRandomWord';
 
 /**
  * Represents all the elements on the category choosing page.
@@ -16,11 +17,18 @@ export default function ChooseCategoryPage({ changePageFn }) {
             <br />
             <div className='pageTitle' >Select a Category</div>
             {/* drop down list component with programatically loaded sections from the text file */}
-            <button onClick={() => {
-                saveGameState('playing');
-                changePageFn('playing');
-            }
-            }>Start Game</button>
+            {getAllCategories().map(category => {
+                return (
+                    <>
+                        <button onClick={() => {
+                            saveGameState('playing');
+                            changePageFn('playing');
+                        }
+                        }>{category}</button>
+                        <br />
+                    </>
+                );
+            })}
             <div>Or</div>
             <button onClick={() => {
                 // choose a random category

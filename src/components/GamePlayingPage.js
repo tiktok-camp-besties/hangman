@@ -20,7 +20,7 @@ export default function GamePlayingPage({ changePageFn, allWords }) {
             <>
                 <h1>Debug: Game Playing Page</h1>
                 <div>Replace this with the graphics</div>
-                <GetRandomWord wordBank={allWords} />;
+                <GetRandomWord wordBank={allWords} />
                 <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
                 <div>Replace this with the Keyboard</div>
                 <div>Change whether will go to win or lose page depending on game's outcome</div>
@@ -36,7 +36,7 @@ export default function GamePlayingPage({ changePageFn, allWords }) {
             <>
                 <h1>Debug: Game Playing Page</h1>
                 <div>Replace this with the graphics</div>
-                <UseCurrentWord category={category} word={word} />;
+                <UseCurrentWord category={category} word={word} />
                 <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
                 <div>Replace this with the Keyboard</div>
                 <div>Change whether will go to win or lose page depending on game's outcome</div>
