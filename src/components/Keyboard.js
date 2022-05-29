@@ -4,8 +4,6 @@ import '../assets/Keyboard.css';
 export default function Keyboard({ }) {
   return (
     <>
-      <h1>Game Ended Page</h1>
-      <div>You have completed the hangman game! You have either saved the guy or lost all of his limbs. Click the button below to start a new game.</div>
       <button type="button" class="keys" id="q-key"> Q </button>
       <button type="button" class="keys" id="w-key"> W </button>
       <button type="button" class="keys" id="e-key"> E </button>
