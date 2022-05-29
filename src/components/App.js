@@ -7,6 +7,9 @@ import LosePage from "./LosePage";
 import ChooseCategoryPage from "./ChooseCategoryPage";
 import { saveGameState, loadSavedStates } from "./LoadSaveGame";
 import { getRandomWord, getRandomCategory, getAllCategories, toShort, toLong } from "./WordCategoryPicker";
+import Figure from "./Figure";
+import WrongLetters from "./WrongLetters";
+import Word from "./Word";
 
 /**
  * Creates everything that you see on the webpage.
