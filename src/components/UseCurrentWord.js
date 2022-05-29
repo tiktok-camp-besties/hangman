@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import getRandomWord from './GetRandomWord';
-import {saveGameState} from './LoadSaveGame';
+import getRandomWord from './WordCategoryPicker';
+import { saveGameState } from './LoadSaveGame';
 
 
 /**
@@ -13,10 +13,10 @@ import {saveGameState} from './LoadSaveGame';
  * Used to get the correct words from the category in the bank.
  */
 const CATEGORIES = new Map([
-    ["foreign", "Foreign words used in English"],
-    ["names", "Gender neutral first names"],
-    ["choc", "Things that go well with chocolate"],
-    ["crush", "Things people do to impress their crush"]
+  ["foreign", "Foreign words used in English"],
+  ["names", "Gender neutral first names"],
+  ["choc", "Things that go well with chocolate"],
+  ["crush", "Things people do to impress their crush"]
 ]);
 
 /**
@@ -26,32 +26,32 @@ const CATEGORIES = new Map([
  * @returns HTML to control the random generation of words. Also displays the word.
  */
 export default function GetCurrentWord({ category, word }) {
-    // ----- declarations ----- 
+  // ----- declarations ----- 
 
-    // tell React to update components when answer is changed.
-    const [answer] = useState('');
+  // tell React to update components when answer is changed.
+  const [answer] = useState('');
 
-    // ----- functions ----- 
+  // ----- functions ----- 
 
 
-    // ----- html of component -----
-    const currKey = category; 
-    return (
-        <>
-            <h2>Get Random Word Component</h2>
-            <div>Category: {CATEGORIES.get(currKey)}</div>
-            <br />
-            <button onClick={() => {
-                    saveGameState("playing");
-                    
-                    // Unknown bug: does not move to start page after refreshing on ended page.
-                    document.location = "/"; // Forced reload page
-                }
-            }>Generate next word</button>
-            <br />
-            <br />
-            <div>The answer is: {word}</div>
-            
-        </>
-    );
+  // ----- html of component -----
+  const currKey = category;
+  return (
+    <>
+      <h2>Get Random Word Component</h2>
+      <div>Category: {CATEGORIES.get(currKey)}</div>
+      <br />
+      <button onClick={() => {
+        saveGameState("playing");
+
+        // Unknown bug: does not move to start page after refreshing on ended page.
+        document.location = "/"; // Forced reload page
+      }
+      }>Generate next word</button>
+      <br />
+      <br />
+      <div>The answer is: {word}</div>
+
+    </>
+  );
 }
