@@ -1,5 +1,6 @@
 import React from 'react'
 import '../assets/GamePlayingPage.css';
+import Keyboard from './Keyboard'
 
 
 /**
@@ -20,7 +21,7 @@ export default function GamePlayingPage({ changePageFn, currCategory, currAnswer
       <button onClick={() => saveOnGuess()}>Save Page State. Wire this up to the guessing function.</button>
 
       <div>Replace this with the _ _ _ A _ _. Perhaps a 'playerGuess' component?</div>
-      <div>Replace this with the Keyboard</div>
+      <Keyboard />
       <div>Change whether will go to win or lose page depending on game's outcome</div>
       <button onClick={() => {
         changePageFn('win');
