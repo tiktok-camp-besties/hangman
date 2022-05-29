@@ -1,0 +1,46 @@
+
+/*------- blanks ------*/
+.blanks {
+    width: 36px;
+      height: 36px;
+  
+    background-color: transparent; 
+    color: black; 
+    border-bottom: 2px solid black;
+  }
+  
+  /*------- keyboard ------*/
+  #myKeyboard {
+    text-align: center;
+  }
+  
+  .keys {
+    /* Rectangle 1 */
+    width: 48px;
+      height: 48px;
+  
+    background-color: #DE543C;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    padding: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 8px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+  
+    /*fonts*/
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-size: 28px;  
+    /*font-weight: 1;
+    line-height: 30px;*/
+  }
+  
+  .keys:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #DE543C;
+  }
