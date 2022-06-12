@@ -12,6 +12,8 @@ export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNe
     <>
       <div className='pageTitle' >Select a Category</div>
 
+      <h1>Just debugging</h1>
+
       {/* List of buttons for player to choose their category */}
       {categoryList(false).map(category => {
         return (
