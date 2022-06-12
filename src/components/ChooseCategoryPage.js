@@ -1,5 +1,6 @@
 import React from 'react'
 import '../assets/ChooseCategoryPage.css';
+import circle from '../assets/circle.png';
 
 /**
  * Represents all the elements on the category choosing page.
@@ -10,7 +11,7 @@ import '../assets/ChooseCategoryPage.css';
 export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNewRandCategory, categoryList, toShort }) {
   return (
     <>
-      <div className='pageTitle' >Select a Category</div>
+      <div className='page-title' >Select a Category</div>
 
       {/* List of buttons for player to choose their category */}
       {categoryList(false).map(category => {
@@ -34,6 +35,14 @@ export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNe
         changePageFn('playing');
       }
       }>Choose Random Category</button>
+      <br />
+
+      <h1>Testing Responsiveness</h1>
+      <br />
+
+      <div className='container-center'>
+        <img className="big-img" src={circle} alt="circle" />
+      </div>
     </>
   );
 }

@@ -2,3 +2,8 @@
   /* just a sample */
   --text-color: #000000;
 }
+
+body {
+  align-items: center;
+  justify-content: center;
+}

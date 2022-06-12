@@ -63,7 +63,7 @@ h1 {
 }
 
 .letter {
-  border-bottom: 3px solid #2980b9;
+  border-bottom: 3px solid #DE543C;
   display: inline-flex;
   font-size: 30px;
   align-items: center;
@@ -86,6 +86,7 @@ h1 {
   justify-content: center;
 }
 
+/* not used */
 .popup {
   background: #2980b9;
   border-radius: 5px;
@@ -127,4 +128,56 @@ h1 {
 
 .notification-container.show {
   transform: translateY(-50px);
+}
+
+.container-center {
+  align-items: center;
+  justify-content: center;
+}
+
+/* standard media sizes from this stackoverflow: */
+/* https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile */
+@media (min-width:320px) {
+
+  /* smartphones, iPhone, portrait 480x320 phones */
+  /* 20em */
+  .big-img {
+    max-width: 80%;
+    display: block;
+  }
+}
+
+@media (min-width:481px) {
+
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+  /* 30em */
+}
+
+@media (min-width:641px) {
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  /* 40em */
+}
+
+@media (min-width:961px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  /* 60em */
+}
+
+@media (min-width:1025px) {
+
+  /* big landscape tablets, laptops, and desktops */
+  /* 64em */
+  .big-img {
+    max-width: 384px;
+    display: block;
+  }
+}
+
+@media (min-width:1281px) {
+  /* hi-res laptops and desktops */
+  /* 80em */
+}
+
+.page-title {
+  text-decoration-color: #000ff0;
 }
