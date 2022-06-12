@@ -10,9 +10,6 @@ import '../assets/ChooseCategoryPage.css';
 export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNewRandCategory, categoryList, toShort }) {
   return (
     <>
-      <h1>Debug: Choose Category Page</h1>
-
-      <br />
       <div className='pageTitle' >Select a Category</div>
 
       {/* List of buttons for player to choose their category */}
@@ -28,7 +25,10 @@ export default function ChooseCategoryPage({ changePageFn, setNewCategory, setNe
           </>
         );
       })}
+
       <div>Or</div>
+
+      {/* Button for player to choose random category */}
       <button onClick={() => {
         setNewRandCategory();
         changePageFn('playing');
