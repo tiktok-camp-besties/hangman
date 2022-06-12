@@ -56,10 +56,10 @@ h1 {
 
 .word {
   display: flex;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+  align-items: center;
+  justify-content: center;
+  /* https://developer.mozilla.org/en-US/docs/Learn/CSS/Howto/Center_an_item */
+  /* align-items aligns vertically, justify-content aligns horizontally */
 }
 
 .letter {
